@@ -58,10 +58,12 @@ class Map
 
     def set(key, value)
         dupe = false
-        @imap.each_with_index do |char, i|
-            if @imap[i][0] == key
+        @imap.each_with_index do |pair, i|
+            if pair[0] == key
                 dupe = true
-                @imap[i][1] == value
+                @imap[i][1] = value
+            else
+                pair
             end
         end
         if dupe == false
@@ -74,7 +76,7 @@ class Map
     end
 
     def delete(key)
-        @imap.with_index do |i|
+        @imap.each_with_index do |char, i|
             @imap.delete_at(i) if @imap[i].include?(key)
         end
     end
