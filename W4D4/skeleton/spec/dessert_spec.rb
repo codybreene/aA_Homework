@@ -35,20 +35,35 @@ describe Dessert do
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do 
+      dessert.add_ingredient("FLOUR")
+      dessert.add_ingredient("SUGAR")
+      dessert.add_ingredient("WATER")
+      dessert.mix!
+      expect(dessert.ingredients[0]).not_to eq("FLOUR")
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do 
+      dessert.eat(1)
+      expect(dessert.quantity).to eq(49) 
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do 
+      expect{dessert.eat(100)}.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do 
+      allow(chef).to receive(:titleize).and_return("Chef")
+    end
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the dessert's chef with the dessert passed in" do
+      allow(chef).to receive(:bake)
+    end
   end
 end
