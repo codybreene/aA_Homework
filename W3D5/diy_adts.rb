@@ -4,7 +4,7 @@
 
 class Stack
 
-    attr_reader :ivar
+    # attr_reader :ivar don't want to give access to stack
 
     def initialize
         @ivar = []
@@ -12,6 +12,7 @@ class Stack
 
     def push(el)
         @ivar << el
+        self #don't return the 
     end
 
     def pop
@@ -30,7 +31,7 @@ stack = Stack.new
 
 class Queue
 
-    attr_reader :ivar
+    # attr_reader :ivar don't want to give access to queue
 
     def initialize
         @ivar = []
@@ -38,11 +39,12 @@ class Queue
 
     def enqueue(el)
         @ivar.unshift(el)
+        self #return the object, not the queue
     end
 
     def dequeue
         @ivar.pop
-        @ivar
+        # @ivar you don't want to expose the queue
     end 
 
     def peek
